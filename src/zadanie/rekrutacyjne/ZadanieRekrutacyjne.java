@@ -13,10 +13,12 @@ import java.util.StringTokenizer;
 public class ZadanieRekrutacyjne {
 
     public static void main(String[] args) {
-        Properties oProps = System.getProperties();
-        String filePath = oProps.getProperty("file");
-        if(filePath == null)
+        String filePath;
+        if(args.length == 0)
             filePath = "Plik z danymi.txt";
+        else {
+            filePath = args[0];
+        }
         
         double sum = 0d;
         
@@ -25,9 +27,7 @@ public class ZadanieRekrutacyjne {
             while(in.hasNextLine()){
                 String line = in.nextLine();
                 if(!line.isEmpty())
-                    sum += getAmmount(line);
-                
-                
+                    sum += getAmmount(line);                
             }
         } catch (FileNotFoundException ex) {
             
