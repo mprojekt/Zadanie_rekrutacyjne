@@ -1,56 +1,34 @@
 package zadanie.rekrutacyjne;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.stream.Stream;
 
-/**
- *
- * @author Marcin
- */
+
 public class ZadanieRekrutacyjne {
 
     public static void main(String[] args) {
-        String filePath;
-        if(args.length == 0)
-            filePath = "Plik z danymi.txt";
-        else {
+        String filePath = "Plik z danymi.txt";
+        if(args.length != 0) {
             filePath = args[0];
         }
         
-        double sum = 0d;
+        Path path = Paths.get(filePath);
+        Money money = new Money();
         
-        try {
-            Scanner in = new Scanner(new File(filePath));
-            while(in.hasNextLine()){
-                String line = in.nextLine();
-                if(!line.isEmpty())
-                    sum += getAmmount(line);                
-            }
-        } catch (FileNotFoundException ex) {
+        try (BufferedReader r = new BufferedReader(new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8))) {
             
+            Stream<String> lines = r.lines();
+            lines.filter(s -> s.length() > 0)
+                    .map(s -> s.substring(s.lastIndexOf("@") + 8, s.length()-3).replaceAll(",", "."))
+                    .forEach(s -> money.add(Double.parseDouble(s)));  
+            
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
         
-        System.out.println("Suma = " + String.format( "%.2f", sum));
-    }
-    
-    private static double getAmmount(String line){
-        StringTokenizer valueTokenizer = new StringTokenizer(line, "@");
-        String amountStr = valueTokenizer.nextToken();
-        while(valueTokenizer.hasMoreTokens())
-            amountStr = valueTokenizer.nextToken();
-        
-        StringTokenizer ammountTokenizer = new StringTokenizer(amountStr, ":");
-        String dou = ammountTokenizer.nextToken();
-        while(ammountTokenizer.hasMoreTokens())
-            dou = ammountTokenizer.nextToken();
-        
-        String saldoStr = dou.substring(0, dou.length()-3).replaceAll(",", ".");        
-        double saldo = Double.parseDouble(saldoStr);
-        
-        return saldo;
+        System.out.println("Suma = " + money);
     }
     
 }
