@@ -1,9 +1,10 @@
 # Zadanie rekrutacyjne
+
 ### 1. Opis i cel zadania
-Celem zadania jest:
 1. odczytanie zawartości pliku tekstowego, który zawiera dane w ustalonym formacie
 2. na podstawie zawartości pliku wypisać sumę kwot w nim zapisanych
 3. zadanie MUSI zostać wykonane z wykorzystaniem języka Java
+
 ### 2. Opis pliku wejściowego
 1. Kodowanie pliku to utf-8
 2. Każda linia w pliku zawiera informacje o jednej transakcji

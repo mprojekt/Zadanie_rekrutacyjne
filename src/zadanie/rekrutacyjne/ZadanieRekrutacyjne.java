@@ -17,15 +17,15 @@ public class ZadanieRekrutacyjne {
         Path path = Paths.get(filePath);
         Money money = new Money();
         
-        try (BufferedReader r = new BufferedReader(new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8))) {
             
-            Stream<String> lines = r.lines();
+            Stream<String> lines = br.lines();
             lines.filter(s -> s.length() > 0)
-                    .map(s -> s.substring(s.lastIndexOf("@") + 8, s.length()-3).replaceAll(",", "."))
+                    .map(s -> s.substring(s.lastIndexOf("@") + 8, s.length() - 3).replaceAll(",", "."))
                     .forEach(s -> money.add(Double.parseDouble(s)));  
             
         } catch (Exception ex) {
-            System.out.println(ex);
+            System.out.println("Nieprawidłowy plik.");
         }
         
         System.out.println("Suma = " + money);
