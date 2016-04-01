@@ -25,7 +25,7 @@ public class ZadanieRekrutacyjne {
                     .forEach(s -> money.add(Double.parseDouble(s)));  
             
         } catch (Exception ex) {
-            System.out.println("Nieprawidłowy plik.");
+            System.out.println("Nieprawidłowy plik.\n" + ex);
         }
         
         System.out.println("Suma = " + money);

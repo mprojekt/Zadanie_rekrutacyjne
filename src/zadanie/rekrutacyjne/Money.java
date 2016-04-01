@@ -24,14 +24,7 @@ public final class Money {
     }
     
     public void add(int zlote, int grosze){
-        int tmp;
-        if((zlote < 0) && (grosze > 0)){
-            tmp = zlote * 100 - grosze;
-        } else if((zlote > 0) && (grosze < 0)){
-            tmp = zlote * -100 + grosze;
-        } else
-            tmp = zlote * 100 + grosze;
-        
+        int tmp = adjustment(zlote, grosze);
         add(tmp);
     }
     
@@ -40,14 +33,7 @@ public final class Money {
     }
     
     public void sub(int zlote, int grosze){
-        int tmp;
-        if((zlote < 0) && (grosze > 0)){
-            tmp = zlote * 100 - grosze;
-        } else if((zlote > 0) && (grosze < 0)){
-            tmp = zlote * -100 + grosze;
-        } else
-            tmp = zlote * 100 + grosze;
-        
+        int tmp = adjustment(zlote, grosze);
         add(-tmp);
     }
 
@@ -76,5 +62,13 @@ public final class Money {
     private void add(int number){
         gr += number;
     }
-    
+
+    private int adjustment(int zlote, int grosze) {
+        if((zlote < 0) && (grosze > 0))
+            return zlote * 100 - grosze;
+        else if((zlote > 0) && (grosze < 0))
+            return zlote * -100 + grosze;
+        
+        return zlote * 100 + grosze;
+    }    
 }
