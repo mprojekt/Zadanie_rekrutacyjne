@@ -29,3 +29,5 @@
 ```
 java ZadanieRekrutacyjne \sciezka\plik.txt
 ```
+2. Kod wykorzystuje klasę Money, która przechowuje informację o kwotach w złotych i pozwala ona na dodawanie i odejmowanie kwot do aktualnie przechowywanych.
+3. Klasa Money **nie** przechowuje informacji o kwotach w zmiennej `double` (zbyt niebezpieczna w operacjach pieniężnych).
