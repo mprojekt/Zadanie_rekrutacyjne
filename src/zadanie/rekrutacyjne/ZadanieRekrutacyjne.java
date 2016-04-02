@@ -15,20 +15,19 @@ public class ZadanieRekrutacyjne {
         }
         
         Path path = Paths.get(filePath);
-        Money money = new Money();
         
         try (BufferedReader br = new BufferedReader(new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8))) {
             
             Stream<String> lines = br.lines();
-            lines.filter(s -> s.length() > 0)
-                    .map(s -> s.substring(s.lastIndexOf("@") + 8, s.length() - 3).replaceAll(",", "."))
-                    .forEach(s -> money.add(Double.parseDouble(s)));  
+            double sum = lines
+                    .filter(s -> s.length() > 0)
+                    .mapToDouble(s -> Double.parseDouble(s.substring(s.lastIndexOf("@") + 8, s.length() - 3).replaceAll(",", ".")))
+                    .sum();
+            
+            System.out.println("Suma = " + String.format("%.2f", sum) + "zł");
             
         } catch (Exception ex) {
             System.out.println("Nieprawidłowy plik.\n" + ex);
         }
-        
-        System.out.println("Suma = " + money);
-    }
-    
+    }    
 }
