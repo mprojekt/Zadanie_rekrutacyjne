@@ -24,10 +24,8 @@
     *  po znaku ':' znajduje się wartość pola
     *  przykładowa linijka będzie miała następującą formę: `@name:Jan@surname:Kowalski@src_iban:84063099651078062132711059@dst_iban:16612843863420872434731304@amount:12,34PLN`
 		
-### 3. Podsumowanie
+### 3. Uruchomienie
 1. Uruchomić program można z wiersza poleceń, gdzie można jako parametr podać ścieżkę do pliku z danymi.
 ```
 java ZadanieRekrutacyjne \sciezka\plik.txt
 ```
-2. Kod wykorzystuje klasę Money, która przechowuje informację o kwotach w złotych i pozwala ona na dodawanie i odejmowanie kwot do aktualnie przechowywanych.
-3. Klasa Money **nie** przechowuje informacji o kwotach w zmiennej `double` (zbyt niebezpieczna w operacjach pieniężnych).
